@@ -1,6 +1,3 @@
-#Crear data set N°2 
-""" reación de un conjunto de datos etiquetado de imágenes de manos, donde las características extraídas representan las posiciones relativas de los puntos clave de las manos detectadas en las imágenes. """
-
 import pickle
 import mediapipe as mp
 import cv2
@@ -73,65 +70,6 @@ with open('data.pickle', 'wb') as f:
 cursor.close()
 connection.close()
 
-
-
-"""
-
-
-import os
-import pickle
-import mediapipe as mp
-import cv2
-import matplotlib.pyplot as plt
-
-# Inicializar MediaPipe Hands
-mp_hands = mp.solutions.hands
-mp_drawing = mp.solutions.drawing_utils
-mp_drawing_styles = mp.solutions.drawing_styles
-hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
-
-# Directorio donde se encuentran los datos de las imágenes
-DATA_DIR = './data'
-
-# Lista para almacenar las características de las manos y las etiquetas
-data = []
-labels = []
-
-# Iterar sobre cada directorio de clase en el directorio de datos
-for dir_ in os.listdir(DATA_DIR):
-    # Iterar sobre cada imagen en el directorio de clase
-    for img_path in os.listdir(os.path.join(DATA_DIR, dir_)):
-        # Lista auxiliar para almacenar las características de la mano en x e y
-        data_aux = []
-        x_ = []
-        y_ = []
-
-        # Leer la imagen y convertirla a formato RGB
-        img = cv2.imread(os.path.join(DATA_DIR, dir_, img_path))
-        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-        # Procesar la imagen con MediaPipe Hands
-        results = hands.process(img_rgb)
-        if results.multi_hand_landmarks:
-            # Recorrer todos los puntos de la mano y guardar las coordenadas
-            for hand_landmarks in results.multi_hand_landmarks:
-                for i in range(len(hand_landmarks.landmark)):
-                    x = hand_landmarks.landmark[i].x
-                    y = hand_landmarks.landmark[i].y
-                    x_.append(x)
-                    y_.append(y)
-
-                # Normalizar las coordenadas de los puntos de la mano
-                for i in range(len(hand_landmarks.landmark)):
-                    x = hand_landmarks.landmark[i].x
-                    y = hand_landmarks.landmark[i].y
-                    data_aux.append(x - min(x_))
-                    data_aux.append(y - min(y_))
-            # Agregar las características de la mano y la etiqueta a las listas de datos y etiquetas
-            data.append(data_aux)
-            labels.append(dir_)
-
-# Guardar los datos y las etiquetas en un archivo pickle
 f = open('data.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()
