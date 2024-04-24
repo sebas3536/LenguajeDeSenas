@@ -20,6 +20,7 @@ Finalmente, se proporciona un script de ejecución que utiliza el modelo entrena
 ## Conexión a la Base de Datos
 Para la gestión de datos, se utiliza una base de datos MySQL. Se proporciona un script de conexión `conexion.py` en la carpeta correspondiente, que contiene la siguiente función:
 
+
 ```python
 import mysql.connector
 
@@ -32,7 +33,9 @@ def conectar_db():
     )
     return connection
 
-
+```
+## Script SQL para crear la base de datos y la tabla necesaria
+``` MYSQL
 # Crear la base de datos (si no existe)
 CREATE DATABASE IF NOT EXISTS imagenes_bd;
 
@@ -50,4 +53,4 @@ CREATE TABLE imagenes (
   INDEX (fecha_captura)
 );
 ```
- ## ¡No olvides completar las credenciales de conexión en el archivo conexion.py antes de utilizarlo!
+ ## ¡Completar las credenciales de conexión en el archivo conexion.py antes de utilizarlo!
