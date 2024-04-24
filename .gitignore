@@ -1,0 +1,7 @@
+data
+templates
+data.pickle
+model.p
+img
+conexion_db.py
+__pycache__
