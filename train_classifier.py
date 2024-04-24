@@ -1,6 +1,3 @@
-# 3
-"""Carga los datos de entrenamiento y etiquetas desde un archivo pickle generado previamente, divide los datos en conjuntos de entrenamiento y prueba, entrena un clasificador de Bosques Aleatorios (Random Forest), realiza predicciones sobre el conjunto de prueba, calcula la precisión del modelo y finalmente guarda el modelo entrenado en otro archivo pickle """
-
 import pickle
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
